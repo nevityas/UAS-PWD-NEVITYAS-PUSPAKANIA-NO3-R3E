@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Hitung Gaji Karyawan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2 class="judul-gaji">Hitung Gaji Karyawan</h2>
+
+    <div class="container-gaji">
+
+        <!-- INPUTAN -->
+        <div class="inputan">
+            <h3>INPUTAN</h3>
+
+            <label>Gaji Pokok (Rp):</label>
+            <input type="number" id="gajiPokok" value="5000000">
+
+            <label>Jumlah Jam Lembur:</label>
+            <input type="number" id="jamLembur" value="20">
+
+            <button onclick="hitungGaji()">Hitung Gaji</button>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="output">
+            <h3>OUTPUT</h3>
+            <p id="hasil"></p>
+        </div>
+
+    </div>
+
+    <script>
+        function hitungGaji() {
+            let gajiPokok = parseInt(document.getElementById("gajiPokok").value);
+            let jamLembur = parseInt(document.getElementById("jamLembur").value);
+
+            let totalLembur = jamLembur * 20000;
+            let gajiKotor = gajiPokok + totalLembur;
+            let pajak = 0;
+
+            if (gajiKotor < 5000000) {
+                pajak = 0.05 * gajiKotor;
+            } else if (gajiKotor <= 10000000) {
+                pajak = 0.10 * gajiKotor;
+            } else {
+                pajak = 0.15 * gajiKotor;
+            }
+
+            let gajiBersih = gajiKotor - pajak;
+
+            document.getElementById("hasil").innerHTML =
+                "Gaji Pokok: Rp " + gajiPokok + "<br>" +
+                "Total Gaji Lembur: Rp " + totalLembur + "<br>" +
+                "Gaji Kotor: Rp " + gajiKotor + "<br>" +
+                "Pajak: Rp " + pajak + "<br>" +
+                "<b>Gaji Bersih: Rp " + gajiBersih + "</b>";
+        }
+    </script>
+
+</body>
+</html>
